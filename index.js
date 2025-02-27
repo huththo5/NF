@@ -15,13 +15,13 @@ const ownerNumber = ['+94 78 800 1464'];
 
 //------------------ Session ---------------------//
 
-if (!fs.existsSync(__dirname + '/session/creds.json')) {
+if (!fs.existsSync(__dirname + '/lib/creds.json')) {
     if (!config.SESSION_ID) return console.log('Please add your session to SESSION_ID env !!');
     const sessdata = config.SESSION_ID;
     const filer = File.fromURL(`https://mega.nz/file/${sessdata}`);
     filer.download((err, data) => {
         if (err) throw err;
-        fs.writeFile(__dirname + '/session/creds.json', data, () => {
+        fs.writeFile(__dirname + '/lib/creds.json', data, () => {
             console.log("✅ QUEEN SADU MD| Session downloaded");
         });
     });
@@ -44,7 +44,7 @@ async function connectToWA() {
 
 //------------------ setting input ---------------------//
    
-    const { state, saveCreds } = await useMultiFileAuthState(__dirname + '/session/');
+    const { state, saveCreds } = await useMultiFileAuthState(__dirname + '/lib/');
     var { version } = await fetchLatestBaileysVersion();
     
     const conn = makeWASocket({
@@ -269,18 +269,7 @@ if (!isReact && senderNumber !== botNumber) {
             }
         }
         
-//------------------ Banned user ---------------------//
 
-        const banbn = await fetchJson(`https://raw.githubusercontent.com/athulakumara604/ASITHA-MD-DATABASE/refs/heads/main/Banduser.json`)
-const plynYnna = banbn.split(",")
-const isBanUser = [ ...plynYnna ]
-      .map((v) => v.replace(/[^0-9]/g, "") + "@s.whatsapp.net")
-      .includes(sender)
-
-const isCreator = ["94704227534,94787072548"]
-      .map((v) => v.replace(/[^0-9]/g, "") + "@s.whatsapp.net")
-      .includes(sender)    
-        
 //------------------ Work tipe ---------------------//
 
 
